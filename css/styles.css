@@ -1,0 +1,97 @@
+body, li, a, p, h1, h1 {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font: inherit;
+  color: inherit;
+  text-align: inherit;
+  text-decoration: inherit;
+  vertical-align: inherit;
+  box-sizing: inherit;
+  background: transparent;
+}
+
+ul {
+  list-style: none;
+}
+
+.group:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+#links {
+  width: 900px;
+  display: block;
+  margin: 0 auto;
+}
+
+#links li {
+  display: block;
+  position: relative;
+  float: left;
+  left: 39%;
+  padding: 10px;
+}
+
+body {
+  background: #21A464;
+  font-family: roboto;
+  height: 100vh;
+  color: #fff;
+}
+
+#header {
+  width: 100%;
+  display: block;
+  height: 30px;
+}
+
+#main {
+  width: 900px;
+  display: block;
+  margin: 0 auto;
+  background: #21A464;
+  border-radius: 3px;
+  height: 90vh;
+}
+
+#personal-info {
+  padding-top: 100px;
+  text-align: center;
+}
+
+#personal-info h1 {
+  font-size: 36px;
+}
+
+#personal-info h2 {
+  font-weight: bold;
+  font-size: 24px;
+}
+
+#codevelop-snippet {
+  height: 100px;
+  width: 200px;
+}
+
+#projects {
+  padding: 30px;
+
+}
+
+#projects h1 {
+  font-size: 36px;
+  text-align: center;
+}
+
+.project-item h2 {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.project-item img {
+  border: 1px solid black;
+}
