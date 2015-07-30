@@ -1724,8 +1724,10 @@
 
 		.image.featured {
 			display: block;
-			width: 100%;
-			margin: 0 0 2em 0;
+			width: 60%;
+			margin: 0 auto;
+			padding-bottom: 30px;
+
 		}
 
 		.image.left {
@@ -2083,7 +2085,7 @@
 		}
 
 			#nav ul li a.active span:before {
-				color: #e27689;
+				color: #149F5C;
 			}
 
 /* Footer */
