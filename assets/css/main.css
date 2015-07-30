@@ -2538,3 +2538,25 @@
 				}
 
 	}
+	.skills-list {
+		width: 900px;
+		min-height: 200px;
+		margin: 0 auto;
+		padding-bottom: 60px;
+	}
+
+	.skills-list li {
+		width: 100px;
+		float: left;
+		margin-right: 80px;
+	}
+
+	.skills-list img {
+		width: 100%;
+	}
+
+.group {
+	content: "";
+	clear: both;
+	display: block;
+}
