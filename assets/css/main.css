@@ -2557,6 +2557,11 @@
 		width: 100%;
 	}
 
+	.skills-list h3 {
+		display: block;
+		font-size: 20px;
+	}
+
 .group {
 	content: "";
 	clear: both;
