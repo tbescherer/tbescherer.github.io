@@ -3,6 +3,6 @@ var ReactDOM = require('react-dom');
 var WebRoot = require('./components/WebRoot');
 
 ReactDOM.render(
- (<WebRoot />),
- document.getElementById('main')
+    (<WebRoot />),
+    document.getElementById('main')
 );
