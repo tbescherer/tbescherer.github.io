@@ -20473,8 +20473,20 @@
 
 	var React = __webpack_require__(1);
 
+	var colorPalette = {
+	    feather: '#77C9D4',
+	    marine: '#57BC90',
+	    forest: '#015249',
+	    gray: '#A5A5AF',
+	    white: '#FFFFFF'
+	};
+
 	var portfolioStyles = {
-	    backgroundColor: 'red'
+	    width: '900px',
+	    margin: 'auto',
+	    height: '100%',
+	    backgroundColor: colorPalette.feather,
+	    color: colorPalette.white
 	};
 
 	var FullPortfolio = function (_React$Component) {
