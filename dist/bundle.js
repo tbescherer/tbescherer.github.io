@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "8c99c4bfe8f1eb84c14e"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "703e6eb4333442b8c9e6"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -28231,11 +28231,13 @@
 
 	        _this.state = {
 	            userInput: '',
-	            displaySections: [_this.renderLoadingScreen]
+	            displaySections: [_this.renderLoadingScreen.bind(_this)],
+	            showTerminal: false
 	        };
 	        _this.handleInputChange = _this.handleInputChange.bind(_this);
 	        _this.evaluateInput = _this.evaluateInput.bind(_this);
 	        _this.renderResume = _this.renderResume.bind(_this);
+	        _this.mountTerminal = _this.mountTerminal.bind(_this);
 	        return _this;
 	    }
 
@@ -28245,9 +28247,13 @@
 	            this.setState({ userInput: value });
 	        }
 	    }, {
+	        key: 'mountTerminal',
+	        value: function mountTerminal() {
+	            this.setState({ showTerminal: true });
+	        }
+	    }, {
 	        key: 'evaluateInput',
 	        value: function evaluateInput() {
-	            console.log(this.state.userInput);
 	            var newSections = this.state.displaySections.slice();
 	            switch (this.state.userInput) {
 	                case 'help':
@@ -28271,8 +28277,17 @@
 	                case 'rm -rf /':
 	                    this.renderResume();
 	                    break;
+	                case 'rm -rf/':
+	                    this.renderResume();
+	                    break;
+	                case 'rm-rf':
+	                    this.renderResume();
+	                    break;
+	                case 'rm-rf/':
+	                    this.renderResume();
+	                    break;
 	                default:
-	                    console.log(this.state.userInput);
+	                    newSections.push(this.renderError);
 	            };
 	            this.setState({ displaySections: newSections });
 	            this.setState({ userInput: '' });
@@ -28280,7 +28295,16 @@
 	    }, {
 	        key: 'renderLoadingScreen',
 	        value: function renderLoadingScreen() {
-	            return React.createElement(_LoadingScreen2.default, null);
+	            return React.createElement(_LoadingScreen2.default, { mountTerminal: this.mountTerminal });
+	        }
+	    }, {
+	        key: 'renderError',
+	        value: function renderError() {
+	            return React.createElement(
+	                'div',
+	                null,
+	                'That isn\'t a valid command'
+	            );
 	        }
 	    }, {
 	        key: 'renderPersonal',
@@ -28406,11 +28430,11 @@
 	                this.state.displaySections.map(function (sectionRenderer) {
 	                    return sectionRenderer();
 	                }),
-	                React.createElement(_TerminalInput2.default, {
+	                this.state.showTerminal ? React.createElement(_TerminalInput2.default, {
 	                    userInput: this.state.userInput,
 	                    onUserInput: this.handleInputChange,
 	                    evaluateInput: this.evaluateInput
-	                })
+	                }) : null
 	            );
 	        }
 	    }, {
@@ -28490,10 +28514,10 @@
 	        key: 'tick',
 	        value: function tick() {
 	            this.setState({ count: this.state.count + 1 });
-	            if (this.state.count > 15) {
+	            if (this.state.count > 6) {
+	                this.props.mountTerminal();
 	                clearInterval(this.timer);
 	            };
-	            console.log(this.state.count);
 	        }
 	    }, {
 	        key: 'render',
@@ -28507,23 +28531,23 @@
 	                    null,
 	                    'Loading...'
 	                ),
-	                this.state.count >= 2 ? _react2.default.createElement(
+	                this.state.count >= 1 ? _react2.default.createElement(
 	                    'div',
 	                    null,
 	                    'Hotswapping Buzzwords...'
 	                ) : null,
-	                this.state.count >= 4 ? _react2.default.createElement(
+	                this.state.count >= 2 ? _react2.default.createElement(
 	                    'div',
 	                    null,
 	                    'Adding more magic to the numbers...'
 	                ) : null,
-	                this.state.count >= 5 ? _react2.default.createElement(
+	                this.state.count >= 4 ? _react2.default.createElement(
 	                    'div',
 	                    null,
 	                    'Rewriting in latest Javascript framework...'
 	                ) : null,
 	                _react2.default.createElement('br', null),
-	                this.state.count >= 7 ? _react2.default.createElement(
+	                this.state.count >= 5 ? _react2.default.createElement(
 	                    'div',
 	                    null,
 	                    _react2.default.createElement(
@@ -28722,6 +28746,7 @@
 
 	        _this.handleChange = _this.handleChange.bind(_this);
 	        _this.handleKeyPress = _this.handleKeyPress.bind(_this);
+	        _this.tabToComplete = _this.tabToComplete.bind(_this);
 	        return _this;
 	    }
 
@@ -28731,15 +28756,67 @@
 	            this.props.onUserInput(event.target.value);
 	        }
 	    }, {
+	        key: 'levenshteinDistance',
+	        value: function levenshteinDistance(searchText, key) {
+	            var m = [],
+	                i = void 0,
+	                j = void 0,
+	                min = Math.min;
+
+	            if (!(searchText && key)) return (searchText || key).length;
+
+	            for (i = 0; i <= key.length; m[i] = [i++]) {}
+	            for (j = 0; j <= searchText.length; m[0][j] = j++) {}
+
+	            for (i = 1; i <= key.length; i++) {
+	                for (j = 1; j <= searchText.length; j++) {
+	                    m[i][j] = key.charAt(i - 1) == searchText.charAt(j - 1) ? m[i - 1][j - 1] : m[i][j] = min(m[i - 1][j - 1] + 1, min(m[i][j - 1] + 1, m[i - 1][j]));
+	                }
+	            }
+
+	            return m[key.length][searchText.length];
+	        }
+	    }, {
+	        key: 'tabToComplete',
+	        value: function tabToComplete(e) {
+	            var _this2 = this;
+
+	            var value = e.target.value;
+	            var matches = [];
+	            Object.keys(_constants.supportedInputs).map(function (key) {
+
+	                var distance = _this2.levenshteinDistance(value, key);
+	                if (distance == 0) {
+	                    matches.push(key);
+	                };
+	            });
+	            if (matches.length === 1) {
+	                this.handleChange({ target: { value: matches[0] } });
+	            }
+	        }
+	    }, {
 	        key: 'handleKeyPress',
 	        value: function handleKeyPress(e) {
-	            if (e.key === 'Enter') {
-	                this.props.evaluateInput();
-	            };
+	            switch (e.keyCode) {
+	                case _constants.keycodes.ENTER:
+	                    this.props.evaluateInput();
+	                    break;
+	                case _constants.keycodes.TAB:
+	                    e.preventDefault();
+	                    this.tabToComplete(e);
+	                    break;
+	                case _constants.keycodes.UP:
+	                    console.log("up");
+	                    break;
+	                case _constants.keycodes.DOWN:
+	                    console.log("down");
+	                    break;
+	            }
 	        }
 	    }, {
 	        key: 'render',
 	        value: function render() {
+	            var that = this;
 	            return _react2.default.createElement(
 	                'div',
 	                null,
@@ -28752,7 +28829,7 @@
 	                    value: this.props.userInput,
 	                    style: _constants.terminalInputStyles,
 	                    onChange: this.handleChange,
-	                    onKeyPress: this.handleKeyPress,
+	                    onKeyDown: this.handleKeyPress,
 	                    type: 'text',
 	                    autoFocus: true
 	                })
@@ -28798,7 +28875,8 @@
 	    color: colorPalette.terminalGreen,
 	    textAlign: 'left',
 	    paddingLeft: '5px',
-	    paddingTop: '10px'
+	    paddingTop: '10px',
+	    overflow: 'scroll'
 	};
 
 	var fullPortfolioStyle = exports.fullPortfolioStyle = {
@@ -28812,9 +28890,27 @@
 	var terminalInputStyles = exports.terminalInputStyles = {
 	    backgroundColor: 'black',
 	    color: colorPalette.terminalGreen,
-	    fontSize: '12px',
+	    fontSize: '14px',
 	    border: '0px solid',
-	    outline: 'none'
+	    outline: 'none',
+	    width: '90%'
+	};
+
+	var supportedInputs = exports.supportedInputs = {
+	    'clear': '',
+	    'help': '',
+	    'rm -rf /': '',
+	    'ls': '',
+	    'cat work_history.txt': '',
+	    'cat personal.txt': '',
+	    'cat links.txt': ''
+	};
+
+	var keycodes = exports.keycodes = {
+	    ENTER: 13,
+	    UP: 38,
+	    DOWN: 40,
+	    TAB: 9
 	};
 
 	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(247); if (makeExportsHot(module, __webpack_require__(139))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "constants.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }

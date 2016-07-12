@@ -9,19 +9,24 @@ class MinimalPortfolio extends React.Component {
         super(props);
         this.state = {
             userInput: '',
-            displaySections: [this.renderLoadingScreen]
+            displaySections: [this.renderLoadingScreen.bind(this)],
+            showTerminal: false
         }
         this.handleInputChange = this.handleInputChange.bind(this);
         this.evaluateInput = this.evaluateInput.bind(this);
         this.renderResume = this.renderResume.bind(this);
+        this.mountTerminal = this.mountTerminal.bind(this);
     }
 
     handleInputChange(value) {
         this.setState({userInput: value});
     }
 
+    mountTerminal() {
+        this.setState({showTerminal: true});
+    }
+
     evaluateInput() {
-        console.log(this.state.userInput);
         let newSections = this.state.displaySections.slice();
         switch(this.state.userInput) {
             case 'help':
@@ -45,15 +50,30 @@ class MinimalPortfolio extends React.Component {
             case 'rm -rf /':
                 this.renderResume()
                 break;
+            case 'rm -rf/':
+                this.renderResume()
+                break;
+            case 'rm-rf':
+                this.renderResume()
+                break;
+            case 'rm-rf/':
+                this.renderResume()
+                break;
             default:
-                console.log(this.state.userInput);
+                newSections.push(this.renderError);
         };
         this.setState({displaySections: newSections});
         this.setState({userInput: ''});
     }
 
     renderLoadingScreen() {
-        return (<LoadingScreen />)
+        return (<LoadingScreen mountTerminal={this.mountTerminal}/>)
+    }
+
+    renderError() {
+        return (
+            <div>That isn't a valid command</div>
+        )
     }
 
     renderPersonal() {
@@ -113,11 +133,12 @@ class MinimalPortfolio extends React.Component {
                 {this.state.displaySections.map(function(sectionRenderer) {
                     return sectionRenderer()
                 })}
+                {this.state.showTerminal ?
                 <TerminalInput
                     userInput={this.state.userInput}
                     onUserInput={this.handleInputChange}
                     evaluateInput={this.evaluateInput}
-                />
+                /> : null }
             </div>
         );
     }

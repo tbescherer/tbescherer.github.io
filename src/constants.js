@@ -15,7 +15,8 @@ export const minimalPortfolioStyle = {
     color: colorPalette.terminalGreen,
     textAlign: 'left',
     paddingLeft: '5px',
-    paddingTop: '10px'
+    paddingTop: '10px',
+    overflow: 'scroll',
 };
 
 export const fullPortfolioStyle = {
@@ -29,7 +30,25 @@ export const fullPortfolioStyle = {
 export const terminalInputStyles = {
     backgroundColor: 'black',
     color: colorPalette.terminalGreen,
-    fontSize: '12px',
+    fontSize: '14px',
     border: '0px solid',
-    outline: 'none'
+    outline: 'none',
+    width: '90%'
+}
+
+export const supportedInputs = {
+    'clear': '',
+    'help': '',
+    'rm -rf /': '',
+    'ls': '',
+    'cat work_history.txt': '',
+    'cat personal.txt': '',
+    'cat links.txt': ''
+}
+
+export const keycodes = {
+    ENTER: 13,
+    UP: 38,
+    DOWN: 40,
+    TAB: 9
 }

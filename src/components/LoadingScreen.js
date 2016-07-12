@@ -16,10 +16,10 @@ class LoadingScreen extends React.Component {
     }
     tick() {
         this.setState({count: this.state.count + 1})
-        if (this.state.count > 15) {
+        if (this.state.count > 6) {
+            this.props.mountTerminal();
             clearInterval(this.timer);
         };
-        console.log(this.state.count);
     }
     render() {
         const loadingStyles = Object.assign(
@@ -30,11 +30,11 @@ class LoadingScreen extends React.Component {
         return (
             <div style={loadingStyles}>
                 <div>Loading...</div>
-                  {this.state.count >=2 ? <div>Hotswapping Buzzwords...</div> : null}
-                  {this.state.count >=4 ? <div>Adding more magic to the numbers...</div> : null}
-                  {this.state.count >=5 ? <div>Rewriting in latest Javascript framework...</div> : null }
+                  {this.state.count >=1 ? <div>Hotswapping Buzzwords...</div> : null}
+                  {this.state.count >=2 ? <div>Adding more magic to the numbers...</div> : null}
+                  {this.state.count >=4 ? <div>Rewriting in latest Javascript framework...</div> : null }
                 <br/>
-                {this.state.count >=7 ? (<div><div>To see available data on Tom Bescherer, enter "ls".</div><div>For a more traditional personal site, enter "rm -rf /".</div><div>For more options, enter "help".</div><div> ...And to get it out of the way, no, this is not a fully functional terminal.</div></div>) : null }
+                {this.state.count >=5 ? (<div><div>To see available data on Tom Bescherer, enter "ls".</div><div>For a more traditional personal site, enter "rm -rf /".</div><div>For more options, enter "help".</div><div> ...And to get it out of the way, no, this is not a fully functional terminal.</div></div>) : null }
             </div>
         );
     }
