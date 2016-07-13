@@ -41,7 +41,7 @@ class MinimalPortfolio extends React.Component {
             case 'cat personal.txt':
                 newSections.push(this.renderPersonal);
                 break;
-            case 'cat work.txt':
+            case 'cat work_history.txt':
                 newSections.push(this.renderWork);
                 break;
             case 'cat links.txt':
@@ -94,7 +94,7 @@ class MinimalPortfolio extends React.Component {
                 <div>
                     <div>Currently I am a Software Engineer at Offerpop.</div>
                     <div>My Skills Include: Python, React/Redux, SQL.</div>
-                    <div>Check out my <a href="www.github.com/tbescherer">Github</a></div>
+                    <div>Check out my <a href="http://www.github.com/tbescherer">Github</a></div>
                 </div>
             </div>
         )

@@ -1,6 +1,7 @@
 html, body, #main {
     height: 100%;
     width: 100%;
+    minWidth: '400px';
 }
 
 body {

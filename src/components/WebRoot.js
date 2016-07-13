@@ -11,13 +11,13 @@ class WebRoot extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            "minimal": true
+            "minimal": false
         }
         this.switchResume = this.switchResume.bind(this);
     };
 
     switchResume() {
-        this.setState({"minimal": false});
+        this.setState({"minimal": !this.state.minimal});
     };
 
     render() {
@@ -26,7 +26,7 @@ class WebRoot extends React.Component {
                   <MinimalPortfolio switchResume={this.switchResume} />
             );
         } else {
-            return (<FullPortfolio />);
+            return (<FullPortfolio switchResume={this.switchResume} />);
         };
     };
 };

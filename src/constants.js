@@ -4,7 +4,9 @@ export const colorPalette = {
     forest: '#015249',
     gray: '#A5A5AF',
     white: '#FFFFFF',
-    terminalGreen: '#32CD32'
+    terminalGreen: '#32CD32',
+    red: '#B8160E',
+    black: '#000000'
 };
 
 export const minimalPortfolioStyle = {
@@ -17,14 +19,17 @@ export const minimalPortfolioStyle = {
     paddingLeft: '5px',
     paddingTop: '10px',
     overflow: 'scroll',
+    fontFamily: 'courier'
 };
 
 export const fullPortfolioStyle = {
+    maxWidth: '900px',
     margin: 'auto',
     height: '100%',
     width: '100%',
     backgroundColor: 'white',
     color: 'black',
+    fontFamily: 'arial'
 };
 
 export const terminalInputStyles = {
