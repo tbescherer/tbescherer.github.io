@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "6eaf313b7c2bcfee3995"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "7f93874f7bf4d96bfe76"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -28268,7 +28268,7 @@
 	                case 'cat personal.txt':
 	                    newSections.push(this.renderPersonal);
 	                    break;
-	                case 'cat work_history.txt':
+	                case 'cat work.txt':
 	                    newSections.push(this.renderWork);
 	                    break;
 	                case 'cat links.txt':
@@ -28321,6 +28321,16 @@
 	                    'div',
 	                    null,
 	                    'I live in New York City (Bushwick, to be precise).'
+	                ),
+	                React.createElement(
+	                    'div',
+	                    null,
+	                    'I am a software Engineer at Offerpop.'
+	                ),
+	                React.createElement(
+	                    'div',
+	                    null,
+	                    'I enjoy listening to podcasts on my commute, going for hikes on weekends, and predicting Oscar winners.'
 	                )
 	            );
 	        }
@@ -28383,7 +28393,17 @@
 	                    React.createElement(
 	                        'div',
 	                        null,
-	                        'Or by placing an add on any major podcast'
+	                        'Or by placing an ad on the first car of the L train; include the keyword "ultraviolet" so I\'ll know it\'s you.'
+	                    ),
+	                    React.createElement(
+	                        'div',
+	                        null,
+	                        'My LinkedIn is https://www.linkedin.com/in/tbescherer'
+	                    ),
+	                    React.createElement(
+	                        'div',
+	                        null,
+	                        'But do us both a favor and use email.'
 	                    )
 	                )
 	            );
@@ -28883,9 +28903,7 @@
 	};
 
 	var fullPortfolioStyle = exports.fullPortfolioStyle = {
-	    maxWidth: '900px',
 	    margin: 'auto',
-	    height: '100%',
 	    width: '100%',
 	    backgroundColor: 'white',
 	    color: 'black',
@@ -28906,7 +28924,7 @@
 	    'help': '',
 	    'rm -rf /': '',
 	    'ls': '',
-	    'cat work_history.txt': '',
+	    'cat work.txt': '',
 	    'cat personal.txt': '',
 	    'cat links.txt': ''
 	};
@@ -28981,12 +28999,12 @@
 	                _react2.default.createElement(
 	                    'div',
 	                    null,
-	                    'cd - changes directory '
+	                    'rm -rf / - bring up traditional resume'
 	                ),
 	                _react2.default.createElement(
 	                    'div',
 	                    null,
-	                    'rm -rf / - bring up traditional resume'
+	                    'ls - list available files'
 	                )
 	            );
 	        }
@@ -29025,92 +29043,63 @@
 	var FullPortfolio = function (_React$Component) {
 	    _inherits(FullPortfolio, _React$Component);
 
-	    function FullPortfolio() {
+	    function FullPortfolio(props) {
 	        _classCallCheck(this, FullPortfolio);
 
-	        return _possibleConstructorReturn(this, Object.getPrototypeOf(FullPortfolio).apply(this, arguments));
+	        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(FullPortfolio).call(this, props));
+
+	        _this.state = {
+	            showAbout: true,
+	            showProjects: false,
+	            showContact: false
+	        };
+	        return _this;
 	    }
 
 	    _createClass(FullPortfolio, [{
-	        key: 'render',
-	        value: function render() {
+	        key: 'renderAppropriateSection',
+	        value: function renderAppropriateSection() {
+	            if (this.state.showAbout) {
+	                return this.renderAbout();
+	            } else if (this.state.showSkills) {
+	                return this.renderSkills();
+	            } else if (this.state.showContact) {
+	                return this.renderContact();
+	            }
+	        }
+	    }, {
+	        key: 'renderAbout',
+	        value: function renderAbout() {
 	            return React.createElement(
 	                'div',
-	                { style: _constants.fullPortfolioStyle },
+	                null,
 	                React.createElement(
 	                    'div',
-	                    { className: 'heading', style: { backgroundColor: _constants.colorPalette.red, color: 'white', display: 'block', height: '200px', textAlign: 'left' } },
+	                    null,
 	                    React.createElement(
 	                        'div',
-	                        { style: { float: 'left', height: '50%', width: '100%' } },
-	                        React.createElement(
-	                            'div',
-	                            { style: { fontSize: '42px', position: 'relative', top: '60px', left: '4px' } },
-	                            'Tom Bescherer'
-	                        )
+	                        null,
+	                        'Hey! Thanks for taking an interest in me.'
 	                    ),
 	                    React.createElement(
 	                        'div',
-	                        { style: { float: 'left', position: 'relative', height: '50%', width: '100%', backgroundColor: 'black' } },
-	                        React.createElement(
-	                            'div',
-	                            { style: { paddingBottom: '5px', fontSize: '24px', position: 'relative', top: '74px', left: '4px' } },
-	                            React.createElement(
-	                                'span',
-	                                { style: { width: '20%', display: 'block', float: 'left' } },
-	                                'About'
-	                            ),
-	                            React.createElement(
-	                                'span',
-	                                { style: { width: '20%', display: 'block', float: 'left' } },
-	                                'Projects'
-	                            ),
-	                            React.createElement(
-	                                'span',
-	                                { style: { width: '20%', display: 'block', float: 'left' } },
-	                                'Contact'
-	                            )
-	                        )
-	                    ),
-	                    React.createElement('img', { style: { width: '200px', float: 'right', position: 'absolute', top: '0px', right: '0px' }, src: 'https://scontent-ord1-1.xx.fbcdn.net/v/t1.0-9/11027516_10204714508802935_7582819730109685739_n.jpg?oh=43a1c23a93949141c3dac43f0e4193f9&oe=582AA0E7' })
+	                        null,
+	                        'Or if you ended up here by accident, wow, how did that happen?'
+	                    )
 	                ),
 	                React.createElement(
 	                    'div',
-	                    { style: { textAlign: 'left', padding: '20px' } },
+	                    { className: 'links', style: { paddingTop: '20px' } },
 	                    React.createElement(
-	                        'div',
-	                        { className: 'skills' },
+	                        'ul',
+	                        null,
 	                        React.createElement(
-	                            'div',
-	                            { style: { fontWeight: 'bold', fontSize: '20px', paddingBottom: '10px' } },
-	                            'Skills'
+	                            'li',
+	                            { style: { fontWeight: 'bold' } },
+	                            'Here are the facts:'
 	                        ),
 	                        React.createElement(
-	                            'div',
-	                            null,
-	                            'Python'
-	                        ),
-	                        React.createElement(
-	                            'div',
-	                            null,
-	                            'React/Redux'
-	                        ),
-	                        React.createElement(
-	                            'div',
-	                            null,
-	                            'MySQL/PostGreSQL'
-	                        )
-	                    ),
-	                    React.createElement(
-	                        'div',
-	                        { className: 'links', style: { paddingTop: '20px' } },
-	                        React.createElement(
-	                            'div',
-	                            { style: { fontWeight: 'bold', fontSize: '20px', paddingBottom: '10px' } },
-	                            'Links'
-	                        ),
-	                        React.createElement(
-	                            'div',
+	                            'li',
 	                            null,
 	                            'I attended ',
 	                            React.createElement(
@@ -29120,7 +29109,7 @@
 	                            )
 	                        ),
 	                        React.createElement(
-	                            'div',
+	                            'li',
 	                            null,
 	                            'I am an Engineer at ',
 	                            React.createElement(
@@ -29130,7 +29119,7 @@
 	                            )
 	                        ),
 	                        React.createElement(
-	                            'div',
+	                            'li',
 	                            null,
 	                            'Check me out on ',
 	                            React.createElement(
@@ -29140,7 +29129,7 @@
 	                            )
 	                        ),
 	                        React.createElement(
-	                            'div',
+	                            'li',
 	                            null,
 	                            'Or read a few of my ',
 	                            React.createElement(
@@ -29150,13 +29139,147 @@
 	                            )
 	                        )
 	                    )
+	                )
+	            );
+	        }
+	    }, {
+	        key: 'renderSkills',
+	        value: function renderSkills() {
+	            return React.createElement(
+	                'div',
+	                null,
+	                React.createElement(
+	                    'div',
+	                    { className: 'skills' },
+	                    React.createElement(
+	                        'div',
+	                        null,
+	                        'Python'
+	                    ),
+	                    React.createElement(
+	                        'div',
+	                        null,
+	                        'React/Redux'
+	                    ),
+	                    React.createElement(
+	                        'div',
+	                        null,
+	                        'MySQL/PostGreSQL'
+	                    ),
+	                    React.createElement(
+	                        'div',
+	                        null,
+	                        'Agile Workflow'
+	                    ),
+	                    React.createElement(
+	                        'div',
+	                        null,
+	                        'Communication'
+	                    )
+	                )
+	            );
+	        }
+	    }, {
+	        key: 'renderContact',
+	        value: function renderContact() {
+	            return React.createElement(
+	                'div',
+	                null,
+	                React.createElement(
+	                    'a',
+	                    { style: { display: 'block' }, href: 'mailto:tbescherer@gmail.com' },
+	                    'Email Me!'
+	                ),
+	                React.createElement(
+	                    'a',
+	                    { style: { display: 'block' }, href: 'https://www.linkedin.com/in/tbescherer' },
+	                    'Check me out on LinkedIn'
+	                ),
+	                React.createElement(
+	                    'a',
+	                    { style: { display: 'block' }, href: '' },
+	                    'Read My Blog'
+	                )
+	            );
+	        }
+	    }, {
+	        key: 'render',
+	        value: function render() {
+	            var _this2 = this;
+
+	            return React.createElement(
+	                'div',
+	                { style: _constants.fullPortfolioStyle },
+	                React.createElement(
+	                    'div',
+	                    { className: 'heading', style: { backgroundColor: _constants.colorPalette.red, color: 'white', display: 'block', height: '200px', textAlign: 'left', position: 'relative' } },
+	                    React.createElement(
+	                        'div',
+	                        { style: { float: 'left', height: '50%', width: '100%' } },
+	                        React.createElement(
+	                            'div',
+	                            { style: { paddingLeft: '20px', margin: 'auto', height: '100%', maxWidth: '900px', position: 'relative' } },
+	                            React.createElement(
+	                                'div',
+	                                { style: { fontSize: '42px', paddingTop: '60px' } },
+	                                'Tom Bescherer'
+	                            ),
+	                            React.createElement('img', { id: 'my-face', style: { width: '200px', position: 'absolute', top: '0px', right: '0px', zIndex: '1' }, src: 'https://scontent-ord1-1.xx.fbcdn.net/v/t1.0-9/11027516_10204714508802935_7582819730109685739_n.jpg?oh=43a1c23a93949141c3dac43f0e4193f9&oe=582AA0E7' })
+	                        )
+	                    ),
+	                    React.createElement(
+	                        'div',
+	                        { style: { float: 'left', position: 'relative', height: '50%', width: '100%', backgroundColor: 'black' } },
+	                        React.createElement(
+	                            'div',
+	                            { style: { height: '100%', paddingLeft: '20px', margin: 'auto', paddingBottom: '5px', fontSize: '24px', paddingTop: '70px', maxWidth: '900px' } },
+	                            React.createElement(
+	                                'div',
+	                                null,
+	                                React.createElement(
+	                                    'span',
+	                                    { style: this.state.showAbout ? { backgroundColor: 'white', color: 'black' } : {}, className: 'header-links', onClick: function onClick() {
+	                                            _this2.setState({ showAbout: true, showSkills: false, showContact: false });
+	                                        } },
+	                                    'About'
+	                                )
+	                            ),
+	                            React.createElement(
+	                                'div',
+	                                null,
+	                                React.createElement(
+	                                    'span',
+	                                    { style: this.state.showSkills ? { backgroundColor: 'white', color: 'black' } : {}, className: 'header-links', onClick: function onClick() {
+	                                            _this2.setState({ showAbout: false, showSkills: true, showContact: false });
+	                                        } },
+	                                    'Skills'
+	                                )
+	                            ),
+	                            React.createElement(
+	                                'div',
+	                                null,
+	                                React.createElement(
+	                                    'span',
+	                                    { style: this.state.showContact ? { backgroundColor: 'white', color: 'black' } : {}, className: 'header-links', onClick: function onClick() {
+	                                            _this2.setState({ showAbout: false, showSkills: false, showContact: true });
+	                                        } },
+	                                    'Contact'
+	                                )
+	                            )
+	                        )
+	                    )
+	                ),
+	                React.createElement(
+	                    'div',
+	                    { style: { textAlign: 'left', paddingTop: '20px', paddingLeft: '20px', maxWidth: '900px', margin: 'auto' } },
+	                    this.renderAppropriateSection()
 	                ),
 	                React.createElement(
 	                    'div',
 	                    null,
 	                    React.createElement(
 	                        'span',
-	                        { style: { display: 'block' } },
+	                        { style: { display: 'block', paddingTop: '60px' } },
 	                        'To see this site as a terminal prompt, click here:'
 	                    ),
 	                    React.createElement(
