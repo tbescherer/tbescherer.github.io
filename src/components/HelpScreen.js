@@ -12,8 +12,8 @@ class HelpScreen extends React.Component {
                 <div>clear - clears the terminal</div>
                 <div>help - shows list of commands</div>
                 <div>cat filename - shows contents of file</div>
-                <div>cd - changes directory </div>
                 <div>rm -rf / - bring up traditional resume</div>
+                <div>ls - list available files</div>
             </div>
         );
     }

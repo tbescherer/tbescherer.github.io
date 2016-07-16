@@ -23,9 +23,7 @@ export const minimalPortfolioStyle = {
 };
 
 export const fullPortfolioStyle = {
-    maxWidth: '900px',
     margin: 'auto',
-    height: '100%',
     width: '100%',
     backgroundColor: 'white',
     color: 'black',
@@ -46,7 +44,7 @@ export const supportedInputs = {
     'help': '',
     'rm -rf /': '',
     'ls': '',
-    'cat work_history.txt': '',
+    'cat work.txt': '',
     'cat personal.txt': '',
     'cat links.txt': ''
 }

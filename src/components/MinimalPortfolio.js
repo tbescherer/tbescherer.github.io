@@ -41,7 +41,7 @@ class MinimalPortfolio extends React.Component {
             case 'cat personal.txt':
                 newSections.push(this.renderPersonal);
                 break;
-            case 'cat work_history.txt':
+            case 'cat work.txt':
                 newSections.push(this.renderWork);
                 break;
             case 'cat links.txt':
@@ -83,6 +83,12 @@ class MinimalPortfolio extends React.Component {
                 <div>
                     I live in New York City (Bushwick, to be precise).
                 </div>
+                <div>
+                    I am a software Engineer at Offerpop.
+                </div>
+                <div>
+                    I enjoy listening to podcasts on my commute, going for hikes on weekends, and predicting Oscar winners.
+                </div>
             </div>
         )
     }
@@ -106,7 +112,10 @@ class MinimalPortfolio extends React.Component {
                 <div>~ $ cat links.txt</div>
                 <div>
                     <div>You can contact me at tbescherer@gmail.com</div>
-                    <div>Or by placing an add on any major podcast</div>
+                    <div>Or by placing an ad on the first car of the L train; include the keyword "ultraviolet" so I'll know it's you.</div>
+                    <div>My LinkedIn is https://www.linkedin.com/in/tbescherer</div>
+                    <div>But do us both a favor and use email.</div>
+
                 </div>
             </div>
         )
